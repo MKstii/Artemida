@@ -1,7 +1,8 @@
 import sqlite3
+from PyQt5.QtWidgets import QTableWidgetItem
 
-# Создаем или открываем базу данных
-conn = sqlite3.connect('artemida.db')
+
+conn = sqlite3.connect('db/artemida.db')
 cursor = conn.cursor()
 
 # Создание таблицы PET_LIST
@@ -58,7 +59,28 @@ CREATE TABLE IF NOT EXISTS VISIT_DETAILS (
 )
 ''')
 
-# Сохраняем изменения и закрываем соединение
+def load_data_to_table(table_widget):
+    conn = sqlite3.connect('db/artemida.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM PET_LIST")
+    rows = cursor.fetchall()
+
+    table_widget.setRowCount(0)  # Очистка таблицы перед заполнением
+
+    for row in rows:
+        row_position = table_widget.rowCount()  # Получаем текущую строку
+        table_widget.insertRow(row_position)  # Вставляем новую строку
+
+        # Порядок: pet_ID (0), pet_name (2), owner_FIO (3), owner_ID (1)
+        table_widget.setItem(row_position, 0, QTableWidgetItem(str(row[0])))  # pet_ID
+        table_widget.setItem(row_position, 1, QTableWidgetItem(str(row[2])))  # pet_name
+        table_widget.setItem(row_position, 2, QTableWidgetItem(str(row[3])))  # owner_FIO
+        table_widget.setItem(row_position, 3, QTableWidgetItem(str(row[1])))  # owner_ID
+
+    conn.commit()
+    conn.close()
+
 conn.commit()
 conn.close()
 
