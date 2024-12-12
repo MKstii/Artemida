@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS PET_DETAILS (
     pet_weight INTEGER,
     pet_features TEXT,
     pet_visit date,
-    FOREIGN KEY (pet_visit) REFERENCES VISIT_DETAILS(pet_visit),
+    visit_ID INTEGER,
+    FOREIGN KEY (visit_ID) REFERENCES VISIT_DETAILS(visit_ID),
     FOREIGN KEY (owner_ID) REFERENCES OWNER_DETAILS(owner_ID)
 )
 ''')
@@ -51,7 +52,8 @@ CREATE TABLE IF NOT EXISTS PET_DETAILS (
 # Создание таблицы VISIT_DETAILS
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS VISIT_DETAILS (
-    pet_visit date PRIMARY KEY,
+    visit_ID INTEGER PRIMARY KEY,
+    pet_visit DATE,
     pet_complaints TEXT,
     pet_diagnosis TEXT,
     pet_analyses TEXT,
