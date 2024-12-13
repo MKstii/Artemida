@@ -823,6 +823,17 @@ class Ui_cardList(object):
         self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.verticalHeader().setVisible(False)
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget) #по нажатию кнопки открывается окно диалога с вопросом об удалении (если выбрана запись в таблице)
+        self.pushButton_4.setGeometry(QtCore.QRect(370, 120, 222, 60))
+        font = QtGui.QFont()
+        font.setFamily("Onest Medium")
+        font.setPointSize(15)
+        self.pushButton_4.setFont(font)
+        self.pushButton_4.setStyleSheet("padding: 12px 24px;\n"
+                                        "color: #242424;\n"
+                                        "border: none;")
+        self.pushButton_4.setAutoRepeatDelay(300)
+        self.pushButton_4.setObjectName("pushButton_4")
         cardList.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(cardList)
@@ -843,6 +854,56 @@ class Ui_cardList(object):
         item.setText(_translate("cardList", "ФИО владельца"))
         item = self.tableWidget.horizontalHeaderItem(3)
         item.setText(_translate("cardList", "ID владельца"))
+        self.pushButton_4.setText(_translate("cardList", "Удалить запись"))
+
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(400, 300)
+        Dialog.setStyleSheet("background-color: #FEFEFE;")
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(60, 50, 272, 102))
+        font = QtGui.QFont()
+        font.setFamily("Onest Medium")
+        font.setPointSize(15)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setWordWrap(True)
+        self.label.setObjectName("label")
+        self.pushButton_3 = QtWidgets.QPushButton(Dialog) #по нажатию кнопки должна удаляться запись
+        self.pushButton_3.setGeometry(QtCore.QRect(40, 190, 130, 56))
+        font = QtGui.QFont()
+        font.setFamily("Onest Medium")
+        font.setPointSize(15)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setStyleSheet("padding: 12px 24px;\n"
+"color: white;\n"
+"border: none;\n"
+"border-radius: 16px;\n"
+"background-color: #174EB9;")
+        self.pushButton_3.setAutoRepeatDelay(300)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_4 = QtWidgets.QPushButton(Dialog) #по нажатию кнопки диалоговое окно закрывается
+        self.pushButton_4.setGeometry(QtCore.QRect(220, 190, 130, 56))
+        font = QtGui.QFont()
+        font.setFamily("Onest Medium")
+        font.setPointSize(15)
+        self.pushButton_4.setFont(font)
+        self.pushButton_4.setStyleSheet("padding: 12px 24px;\n"
+"color: #242424;\n"
+"border: none;")
+        self.pushButton_4.setAutoRepeatDelay(300)
+        self.pushButton_4.setObjectName("pushButton_4")
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.label.setText(_translate("Dialog", "Вы действительно хотите удалить запись?"))
+        self.pushButton_3.setText(_translate("Dialog", "Да"))
+        self.pushButton_4.setText(_translate("Dialog", "Нет"))
 
 # -*- coding: utf-8 -*-
 

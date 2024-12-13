@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>864</height>
+    <height>935</height>
    </rect>
   </property>
   <property name="font">
@@ -335,6 +335,33 @@ background-color: #EDEDED;
       </brush>
      </property>
     </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>120</y>
+      <width>222</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Onest Medium</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">padding: 12px 24px;
+color: #242424;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string>Удалить запись</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>300</number>
+    </property>
    </widget>
   </widget>
  </widget>
