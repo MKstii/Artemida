@@ -1,34 +1,32 @@
 import sys
-from dataBase import load_data_to_table
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QApplication, QMainWindow, QStackedWidget
 
-from ui import Ui_MainWindow, Ui_cardList
+from windows.CardListWindow import CardListWindow
+from windows.MainWindow import MainWindow
 
 
-class MainWindow(QMainWindow):
+class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.mainWind = self
-        self.ChangeUI(Ui_MainWindow())
-        self.popup = None
-        self.ui.pushButton_3.clicked.connect(self.close_application)
+        self.setFixedSize(1440, 864)
+        
+        # Создаем стек виджетов, куда поместим все окна для удобного переключения
+        self.stacked_widget = QStackedWidget(self)
+        self.setCentralWidget(self.stacked_widget)
 
-        self.ui.pushButton_2.clicked.connect(self.load_data)
+        # Создаем окна
+        self.main_menu = MainWindow(self)
+        self.card_list_menu = CardListWindow(self)
 
-    def ChangeUI(self, UI):
-        self.ui = UI
-        self.ui.setupUi(self)
+        # Добавляем окна в стек
+        self.stacked_widget.addWidget(self.main_menu)
+        self.stacked_widget.addWidget(self.card_list_menu)
 
-    def close_application(self):
-        self.close()
-
-    def load_data(self):
-        load_data_to_table(self.ui.tableWidget)
-
+        # Устанавливаем главное окно
+        self.stacked_widget.setCurrentWidget(self.main_menu)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = MainWindow()
+    ex = Main()
     ex.show()
     sys.exit(app.exec())
