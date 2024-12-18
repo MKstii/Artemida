@@ -12,9 +12,13 @@ class MainWindow(QMainWindow):
         self.popup = None
         self.ui.pushButton_3.clicked.connect(self.close_application)
         self.ui.pushButton_2.clicked.connect(self.show_card_list)
+        self.ui.pushButton.clicked.connect(self.show_create_pet)
 
     def show_card_list(self):
         self.parent.stacked_widget.setCurrentWidget(self.parent.card_list_menu)
+
+    def show_create_pet(self):
+        self.parent.stacked_widget.setCurrentWidget(self.parent.create_pet)
 
     def close_application(self):
         self.parent.close()
